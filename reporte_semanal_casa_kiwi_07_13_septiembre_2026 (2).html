@@ -1,0 +1,2415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reporte Semanal Casa Kiwi Hostel | 07 al 13 de Septiembre 2026</title>
+  <!-- Chart.js for data visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --kiwi-orange: #F15A3A;
+      --kiwi-orange-light: #ffede8;
+      --kiwi-orange-hover: #d9492b;
+      --kiwi-green: #C9DB32;
+      --kiwi-green-dark: #829408;
+      --kiwi-green-light: #f5f9dd;
+      --kiwi-dark: #202020;
+      --kiwi-gray-dark: #333333;
+      --kiwi-gray-medium: #666666;
+      --kiwi-gray-light: #f4f5f7;
+      --kiwi-card-border: #e6e8ec;
+      --alert-red: #d32f2f;
+      --alert-red-light: #fde8e8;
+      --alert-amber: #f57c00;
+      --alert-amber-light: #fff3e0;
+      --alert-blue: #1976d2;
+      --alert-blue-light: #e3f2fd;
+      --alert-green: #2e7d32;
+      --alert-green-light: #e8f5e9;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f7f8fa;
+      color: var(--kiwi-dark);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Sticky Navigation */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--kiwi-card-border);
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--kiwi-dark);
+    }
+    .nav-brand img {
+      height: 32px;
+      width: auto;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--kiwi-gray-medium);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .nav-links a:hover {
+      color: var(--kiwi-orange);
+      background: var(--kiwi-orange-light);
+    }
+    .btn-print {
+      background: var(--kiwi-dark);
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-print:hover {
+      background: var(--kiwi-orange);
+    }
+
+    /* Main Container */
+    .dashboard-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 20px 60px 20px;
+    }
+
+    /* Header Section */
+    .header-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 32px 36px;
+      margin-bottom: 24px;
+      border: 1px solid var(--kiwi-card-border);
+      box-shadow: var(--shadow-md);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .header-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--kiwi-orange) 0%, var(--kiwi-green) 100%);
+    }
+    .header-logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 110px;
+      height: 110px;
+      background: #fafafa;
+      border-radius: var(--radius-md);
+      padding: 8px;
+      border: 1px solid #ebebeb;
+    }
+    .header-logo-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    .header-info h1 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--kiwi-dark);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    .header-dates {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--kiwi-orange);
+      background: var(--kiwi-orange-light);
+      padding: 3px 10px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .header-subtitle {
+      font-size: 14px;
+      color: var(--kiwi-gray-medium);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .header-executive-phrase {
+      font-size: 13.5px;
+      color: var(--kiwi-gray-dark);
+      background: #fdfaf6;
+      border-left: 3px solid var(--kiwi-orange);
+      padding: 8px 12px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-style: italic;
+    }
+    .header-meta {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .meta-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--kiwi-gray-dark);
+    }
+    .meta-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--kiwi-green-dark);
+    }
+
+    /* Section Typography & Titles */
+    .section-title-wrap {
+      margin: 32px 0 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--kiwi-card-border);
+      padding-bottom: 8px;
+    }
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--kiwi-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: -0.3px;
+    }
+    .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: var(--kiwi-orange);
+      color: #ffffff;
+      border-radius: 50%;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .section-tag {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--kiwi-gray-medium);
+      background: #ffffff;
+      padding: 4px 10px;
+      border-radius: 12px;
+      border: 1px solid var(--kiwi-card-border);
+    }
+
+    /* Cards & Layout */
+    .card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--kiwi-card-border);
+      box-shadow: var(--shadow-sm);
+      padding: 24px;
+      margin-bottom: 20px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      box-shadow: var(--shadow-md);
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--kiwi-dark);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    /* KPI Cards */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .kpi-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--kiwi-card-border);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .kpi-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--kiwi-card-border);
+    }
+    .kpi-card.orange::before { background: var(--kiwi-orange); }
+    .kpi-card.green::before { background: var(--kiwi-green-dark); }
+    .kpi-card.red::before { background: var(--alert-red); }
+    .kpi-card.blue::before { background: var(--alert-blue); }
+    .kpi-card.amber::before { background: var(--alert-amber); }
+
+    .kpi-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .kpi-name {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--kiwi-gray-medium);
+      letter-spacing: 0.5px;
+    }
+    .kpi-icon {
+      font-size: 16px;
+    }
+    .kpi-value {
+      font-size: 25px;
+      font-weight: 800;
+      color: var(--kiwi-dark);
+      margin-bottom: 4px;
+      letter-spacing: -0.5px;
+    }
+    .kpi-subtext {
+      font-size: 11.5px;
+      color: var(--kiwi-gray-medium);
+      line-height: 1.4;
+    }
+    .kpi-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-top: 6px;
+    }
+    .kpi-badge.positive {
+      background: var(--alert-green-light);
+      color: var(--alert-green);
+    }
+    .kpi-badge.alert {
+      background: var(--alert-red-light);
+      color: var(--alert-red);
+    }
+    .kpi-badge.neutral {
+      background: var(--kiwi-gray-light);
+      color: var(--kiwi-gray-dark);
+    }
+
+    /* Tables */
+    .table-responsive {
+      overflow-x: auto;
+      margin: 12px 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--kiwi-card-border);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 12.5px;
+    }
+    thead {
+      background: #fafbfc;
+      border-bottom: 2px solid var(--kiwi-card-border);
+    }
+    th {
+      padding: 10px 14px;
+      font-weight: 700;
+      color: var(--kiwi-gray-dark);
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.4px;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #edf0f2;
+      color: var(--kiwi-dark);
+    }
+    tbody tr:hover {
+      background: #fdfdfd;
+    }
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    tfoot {
+      background: #f8f9fa;
+      font-weight: 700;
+      border-top: 2px solid var(--kiwi-card-border);
+    }
+    tfoot td {
+      padding: 11px 14px;
+      color: var(--kiwi-dark);
+    }
+
+    /* Badges & Indicators */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .badge-success { background: var(--alert-green-light); color: var(--alert-green); }
+    .badge-warning { background: var(--alert-amber-light); color: var(--alert-amber); }
+    .badge-danger { background: var(--alert-red-light); color: var(--alert-red); }
+    .badge-info { background: var(--alert-blue-light); color: var(--alert-blue); }
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    /* Executive Insights Box */
+    .insight-box {
+      background: #fcfcfd;
+      border: 1px solid var(--kiwi-card-border);
+      border-left: 4px solid var(--kiwi-orange);
+      padding: 16px 20px;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: 16px 0;
+    }
+    .insight-box.green {
+      border-left-color: var(--kiwi-green-dark);
+      background: #fafcf2;
+    }
+    .insight-box.red {
+      border-left-color: var(--alert-red);
+      background: #fffafa;
+    }
+    .insight-box h4 {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--kiwi-dark);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .insight-box p {
+      font-size: 13px;
+      color: var(--kiwi-gray-dark);
+      margin-bottom: 4px;
+    }
+    .insight-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Findings 3-Block Grid (Hallazgo, Interpretación, Acción) */
+    .finding-card {
+      background: #ffffff;
+      border: 1px solid var(--kiwi-card-border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .finding-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #edf0f2;
+    }
+    .finding-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--kiwi-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .finding-pillar {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--kiwi-gray-light);
+      color: var(--kiwi-gray-dark);
+    }
+    .finding-triad {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    .triad-col {
+      background: #fafbfc;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      border-top: 3px solid #ccc;
+    }
+    .triad-col.evidence { border-top-color: var(--alert-blue); }
+    .triad-col.interpretation { border-top-color: var(--kiwi-orange); }
+    .triad-col.action { border-top-color: var(--kiwi-green-dark); }
+    .triad-label {
+      font-size: 10.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--kiwi-gray-medium);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .triad-text {
+      font-size: 12px;
+      color: var(--kiwi-gray-dark);
+      line-height: 1.45;
+    }
+
+    /* Pulse of the Week */
+    .pulse-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .pulse-item {
+      background: #fafbfc;
+      border: 1px solid var(--kiwi-card-border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .pulse-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--kiwi-gray-medium);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pulse-value {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--kiwi-dark);
+      margin-bottom: 4px;
+    }
+    .pulse-desc {
+      font-size: 12px;
+      color: var(--kiwi-gray-dark);
+    }
+
+    /* Traffic Light Section (Semáforo de Gestión) */
+    .traffic-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .traffic-col {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--kiwi-card-border);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+    .traffic-col.green { border-top: 4px solid var(--alert-green); }
+    .traffic-col.amber { border-top: 4px solid var(--alert-amber); }
+    .traffic-col.red { border-top: 4px solid var(--alert-red); }
+    .traffic-col.blue { border-top: 4px solid var(--alert-blue); }
+    .traffic-head {
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .traffic-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .traffic-item {
+      font-size: 12px;
+      color: var(--kiwi-gray-dark);
+      line-height: 1.4;
+      padding-left: 12px;
+      position: relative;
+    }
+    .traffic-item::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+    .traffic-col.green .traffic-item::before { color: var(--alert-green); }
+    .traffic-col.amber .traffic-item::before { color: var(--alert-amber); }
+    .traffic-col.red .traffic-item::before { color: var(--alert-red); }
+    .traffic-col.blue .traffic-item::before { color: var(--alert-blue); }
+
+    /* Recommendations Cards */
+    .recom-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .recom-card {
+      background: #ffffff;
+      border: 1px solid var(--kiwi-card-border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+    .recom-pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+    .recom-pill.revenue { background: var(--kiwi-orange-light); color: var(--kiwi-orange); }
+    .recom-pill.comercial { background: var(--kiwi-green-light); color: var(--kiwi-green-dark); }
+    .recom-pill.operacion { background: var(--alert-blue-light); color: var(--alert-blue); }
+    .recom-pill.experiencia { background: #f3e5f5; color: #7b1fa2; }
+    .recom-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--kiwi-dark);
+      margin-bottom: 6px;
+    }
+    .recom-desc {
+      font-size: 12.5px;
+      color: var(--kiwi-gray-dark);
+      line-height: 1.45;
+    }
+
+    /* Progress Bar */
+    .progress-wrap {
+      background: #edf0f2;
+      border-radius: 8px;
+      height: 7px;
+      width: 100%;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+    .progress-bar {
+      height: 100%;
+      border-radius: 8px;
+      transition: width 0.3s ease;
+    }
+    .progress-bar.orange { background: var(--kiwi-orange); }
+    .progress-bar.green { background: var(--kiwi-green-dark); }
+    .progress-bar.red { background: var(--alert-red); }
+
+    /* Footer */
+    .footer-section {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--kiwi-card-border);
+      font-size: 12px;
+      color: var(--kiwi-gray-medium);
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 992px) {
+      .grid-2, .grid-3, .grid-4, .pulse-grid, .traffic-grid, .finding-triad, .recom-grid {
+        grid-template-columns: 1fr;
+      }
+      .header-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .header-logo-wrap {
+        margin: 0 auto;
+      }
+      .header-meta {
+        text-align: center;
+        align-items: center;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      .top-nav, .btn-print {
+        display: none !important;
+      }
+      body {
+        background: #ffffff !important;
+        font-size: 10pt;
+      }
+      .dashboard-container {
+        max-width: 100% !important;
+        padding: 0 !important;
+      }
+      .card, .header-card, .finding-card, .kpi-card {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+        page-break-inside: avoid;
+        margin-bottom: 14px !important;
+      }
+      .section-title-wrap {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Top Navigation -->
+  <nav class="top-nav">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <img src="data:image/png;base64,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" alt="Casa Kiwi Logo">
+        <span>CASA KIWI HOSTEL</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#kpis">KPIs</a></li>
+        <li><a href="#ocupacion">Ocupación</a></li>
+        <li><a href="#reservas">Reservas</a></li>
+        <li><a href="#cancelaciones">Cancelaciones</a></li>
+        <li><a href="#checkin-out">Check-in/Out</a></li>
+        <li><a href="#huespedes">Huéspedes</a></li>
+        <li><a href="#habitaciones">Habitaciones</a></li>
+        <li><a href="#ingresos">Ingresos</a></li>
+        <li><a href="#revenue-management">Revenue</a></li>
+        <li><a href="#recomendaciones">Acciones</a></li>
+      </ul>
+      <button class="btn-print" onclick="window.print()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+        Imprimir / Guardar PDF
+      </button>
+    </div>
+  </nav>
+
+  <div class="dashboard-container">
+
+    <!-- 1. ENCABEZADO -->
+    <header class="header-card">
+      <div class="header-logo-wrap">
+        <img src="data:image/png;base64,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" alt="Casa Kiwi Hostel Medellín">
+      </div>
+      <div class="header-info">
+        <span class="header-dates">Semana del 07 al 13 de Septiembre de 2026</span>
+        <h1>REPORTE SEMANAL EJECUTIVO</h1>
+        <div class="header-subtitle">Revenue Management · Reservas · Ocupación · Huéspedes · Operación Hotelera</div>
+        <p class="header-executive-phrase">
+          “Semana caracterizada por una alta rentabilidad en habitaciones privadas (73.5% del revenue con ADR de $140.345) y un pico de fin de semana (50.7% del revenue semanal), frente a una baja conversión entre semana (26.5% miércoles) y una amplia capacidad ociosa en dormitorios (65.2% desocupados).”
+        </p>
+      </div>
+      <div class="header-meta">
+        <div class="meta-badge"><span class="meta-dot"></span> Entorno: Operativo & Comercial</div>
+        <div class="meta-badge" style="color: var(--kiwi-orange);">Medellín, Antioquia</div>
+        <div class="meta-badge" style="font-size: 11px; color: var(--kiwi-gray-medium);">Capacidad: 49 Unidades / 343 Noches</div>
+        <div class="meta-badge" style="font-size: 11px; color: var(--kiwi-gray-medium);">Voluntarios excluidos (Roble/Bamboo)</div>
+      </div>
+    </header>
+
+    <!-- 2. RESUMEN EJECUTIVO -->
+    <section id="resumen">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">02</span> Resumen Ejecutivo</div>
+        <span class="section-tag">Conclusiones Clave de la Semana</span>
+      </div>
+
+      <div class="card">
+        <div class="grid-2" style="gap: 16px;">
+          <div class="insight-box green">
+            <h4><span class="badge badge-success">Fortaleza Comercial</span> Privadas: El Motor Económico Absoluto</h4>
+            <p>Las <strong>habitaciones privadas</strong> aportaron el <strong>73.5% del revenue de check-ins ($8.140.012 COP)</strong> vendiendo 58 noches con un ADR de <strong>$140.345 COP</strong> (3.1 veces el ADR de dormitorios). Las privadas con baño compartido fueron la estrella absoluta con <strong>68.3% de ocupación semanal</strong> y <strong>100% de ocupación el sábado</strong>.</p>
+          </div>
+
+          <div class="insight-box">
+            <h4><span class="badge badge-warning">Patrón de Demanda</span> Fin de Semana Altamente Monetizado vs Valle Semanal</h4>
+            <p>Viernes y sábado concentraron el <strong>50.7% del revenue semanal ($5.616.306 COP)</strong> con un ADR récord el viernes de <strong>$163.440 COP</strong>. En contraste, los días entre semana mostraron una marcada contracción, tocando fondo el miércoles (<strong>26.5% de ocupación</strong> y ADR de $62.918 COP), evidenciando la necesidad de un pricing dinámico para días valle.</p>
+          </div>
+
+          <div class="insight-box red">
+            <h4><span class="badge badge-danger">Riesgo Operativo</span> Extrema Dependencia Last-Minute y Fricción en Pagos</h4>
+            <p>La <strong>mediana de anticipación de reserva fue de 0 días</strong> (50% reservó el mismo día de llegada o walk-in). A su vez, las cancelaciones reales sumaron <strong>$2.689.024 COP</strong> (9 registros), donde <strong>pagos rechazados y no shows concentraron el 84.8% del valor perdido ($2.280.000 COP)</strong>, señalando fallas en la pasarela web y falta de garantías de cobro.</p>
+          </div>
+
+          <div class="insight-box">
+            <h4><span class="badge badge-info">Estrategia de Canales</span> Booking.com en Tarifa vs Hostelworld en Volumen</h4>
+            <p><strong>Booking.com</strong> logró un ADR de <strong>$119.020 COP</strong> (+71% vs Hostelworld) y el mayor ticket promedio ($290.111 COP). <strong>Hostelworld</strong> traccionó volumen (70 noches vendidas, 3.04 noches estancia media) pero a un ADR de $69.459 COP. El <strong>Booking Engine directo</strong> demostró un potencial enorme con ADR de <strong>$157.200 COP</strong> pero con solo 3 reservas.</p>
+          </div>
+
+          <div class="insight-box green">
+            <h4><span class="badge badge-success">Perfil del Huésped</span> Internacional Joven con Estancia de 2.89 Noches</h4>
+            <p>El <strong>91.3% de los huéspedes alojados fueron internacionales</strong> (Francia y Alemania sumaron el 37.6% del total). Se registraron 63 viajeros únicos (edad promedio 28.4 años) que generaron 182 noches-persona (2.89 noches por viajero), lo que abre un margen extraordinario para cross-selling en bar, tours y actividades.</p>
+          </div>
+
+          <div class="insight-box">
+            <h4><span class="badge badge-warning">Capacidad Ociosa</span> Dormitorios y Privadas con Baño Privado sin Traccionar</h4>
+            <p>De las 343 unidades-noches disponibles, se desaprovecharon 207 (<strong>39.7% ocupación total</strong>). Los <strong>dormitorios dejaron 137 camas vacías (34.8% ocupación)</strong> y las <strong>privadas con baño privado operaron a solo 28.6%</strong> (apenas 1 habitación vendida por noche de martes a jueves), demandando revisión de pricing y visibilidad.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. INDICADORES PRINCIPALES – KPI CARDS -->
+    <section id="kpis">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">03</span> Indicadores Principales (KPI Cards)</div>
+        <span class="section-tag">Performance Global de la Semana</span>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card orange">
+          <div class="kpi-header">
+            <span class="kpi-name">Ocupación Semanal</span>
+            <span class="kpi-icon">📊</span>
+          </div>
+          <div class="kpi-value">39.7%</div>
+          <div class="kpi-subtext">136 vendidas / 343 disponibles (base 49 unidades/día). Excluye Roble y Bamboo.</div>
+          <span class="kpi-badge neutral">Pico: Sáb 51.0% | Valle: Mié 26.5%</span>
+        </div>
+
+        <div class="kpi-card green">
+          <div class="kpi-header">
+            <span class="kpi-name">Ingresos Check-ins</span>
+            <span class="kpi-icon">💵</span>
+          </div>
+          <div class="kpi-value">$11.068.403</div>
+          <div class="kpi-subtext">Generado por las 49 reservas efectivas ingresadas (123 noches totales).</div>
+          <span class="kpi-badge positive">+9.8% vs reservas creadas en semana</span>
+        </div>
+
+        <div class="kpi-card orange">
+          <div class="kpi-header">
+            <span class="kpi-name">ADR Global (Check-in)</span>
+            <span class="kpi-icon">🏷️</span>
+          </div>
+          <div class="kpi-value">$89.987</div>
+          <div class="kpi-subtext">Tarifa promedio por noche vendida (Privadas: $140.345 | Dorms: $45.052).</div>
+          <span class="kpi-badge positive">Pico Viernes: $163.440</span>
+        </div>
+
+        <div class="kpi-card blue">
+          <div class="kpi-header">
+            <span class="kpi-name">RevPAR Comercial</span>
+            <span class="kpi-icon">📈</span>
+          </div>
+          <div class="kpi-value">$37.109</div>
+          <div class="kpi-subtext">Ingreso de alojamiento P&L ($12.728.439) / 343 unidades comerciales.</div>
+          <span class="kpi-badge neutral">Margen de expansión alto</span>
+        </div>
+
+        <div class="kpi-card green">
+          <div class="kpi-header">
+            <span class="kpi-name">Ticket Promedio</span>
+            <span class="kpi-icon">🧾</span>
+          </div>
+          <div class="kpi-value">$225.886</div>
+          <div class="kpi-subtext">Valor promedio por reserva de check-in (Privadas: $370.001 | Dorms: $108.459).</div>
+          <span class="kpi-badge positive">Booking lidera: $290.111</span>
+        </div>
+
+        <div class="kpi-card blue">
+          <div class="kpi-header">
+            <span class="kpi-name">RevPAC (Gasto/Pax)</span>
+            <span class="kpi-icon">👤</span>
+          </div>
+          <div class="kpi-value">$155.893</div>
+          <div class="kpi-subtext">Ingreso por huésped alojado (Check-ins: 71 pax totales).</div>
+          <span class="kpi-badge positive">Potencial con venta en Bar</span>
+        </div>
+
+        <div class="kpi-card amber">
+          <div class="kpi-header">
+            <span class="kpi-name">Lead Time (Mediana)</span>
+            <span class="kpi-icon">⏱️</span>
+          </div>
+          <div class="kpi-value">0 Días</div>
+          <div class="kpi-subtext">50% reservó el mismo día (Media: 6.5 días). Alta dependencia Last-Minute.</div>
+          <span class="kpi-badge alert">Monitoreo crítico en D-0 y D-1</span>
+        </div>
+
+        <div class="kpi-card red">
+          <div class="kpi-header">
+            <span class="kpi-name">Cancelaciones Reales</span>
+            <span class="kpi-icon">🚫</span>
+          </div>
+          <div class="kpi-value">$2.689.024</div>
+          <div class="kpi-subtext">9 reservas perdidas. 49% pagos fallidos web ($1.32M) y 36% no-shows ($960k).</div>
+          <span class="kpi-badge alert">Fuga evitable de liquidez</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. EL PULSO DE LA SEMANA (Promoted for Executive Impact) -->
+    <section id="pulso">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">04</span> El Pulso de la Semana</div>
+        <span class="section-tag">Termómetro Rápido de Gestión</span>
+      </div>
+
+      <div class="pulse-grid">
+        <div class="pulse-item" style="border-left: 4px solid var(--kiwi-green-dark);">
+          <div>
+            <div class="pulse-label">🏆 Mejor Día de la Semana</div>
+            <div class="pulse-value">Sábado 12-Sep</div>
+          </div>
+          <div class="pulse-desc">Pico de ocupación (<strong>51.0%</strong>), pico de ingresos check-in (<strong>$3.491.586 COP</strong>), y <strong>100% de ocupación</strong> en privadas con baño compartido.</div>
+        </div>
+
+        <div class="pulse-item" style="border-left: 4px solid var(--alert-red);">
+          <div>
+            <div class="pulse-label">⚠️ Día Más Débil</div>
+            <div class="pulse-value">Miércoles 09-Sep</div>
+          </div>
+          <div class="pulse-desc">Valle de ocupación semanal (<strong>26.5%</strong>), ADR caído a <strong>$62.918 COP</strong> y solo 13 unidades ocupadas de 49 disponibles.</div>
+        </div>
+
+        <div class="pulse-item" style="border-left: 4px solid var(--kiwi-orange);">
+          <div>
+            <div class="pulse-label">⭐ Categoría Más Demandada</div>
+            <div class="pulse-value">Privadas Baño Compartido</div>
+          </div>
+          <div class="pulse-desc">Ocupación estelar de <strong>68.3%</strong> (43 de 63 noches vendidas). Habitación icono: <strong>Privado 10</strong> (8 huéspedes recibidos).</div>
+        </div>
+
+        <div class="pulse-item" style="border-left: 4px solid var(--alert-blue);">
+          <div>
+            <div class="pulse-label">💡 Principal Oportunidad</div>
+            <div class="pulse-value">Recuperar Dorms y Canal Directo</div>
+          </div>
+          <div class="pulse-desc">Vender parte de las 137 camas ociosas con ofertas entre semana y capitalizar el motor directo (Booking Engine logró ADR récord de <strong>$157.200 COP</strong>).</div>
+        </div>
+
+        <div class="pulse-item" style="border-left: 4px solid var(--alert-red);">
+          <div>
+            <div class="pulse-label">🛑 Principal Riesgo</div>
+            <div class="pulse-value">Fuga por Pasarela & No-Shows</div>
+          </div>
+          <div class="pulse-desc"><strong>$2.280.000 COP perdidos</strong> entre 2 transacciones rechazadas y 3 no-shows sin garantía, representando el 85% de las pérdidas por cancelación.</div>
+        </div>
+
+        <div class="pulse-item" style="border-left: 4px solid var(--kiwi-green-dark);">
+          <div>
+            <div class="pulse-label">📌 Dato Destacado</div>
+            <div class="pulse-value">ADR Viernes: $163.440 COP</div>
+          </div>
+          <div class="pulse-desc">Con apenas 5 reservas y 13 noches, el viernes generó <strong>$2.124.720 COP</strong>, demostrando que la demanda acepta tarifas altas para inicio de fin de semana.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. OCUPACIÓN -->
+    <section id="ocupacion">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">05</span> Análisis Detallado de Ocupación</div>
+        <span class="section-tag">Capacidad Disponible vs Vendida</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Ocupación Diaria % vs Promedio Semanal (39.7%)</span>
+            <span class="badge badge-info">Base 49 Unidades Comerciales</span>
+          </div>
+          <div style="height: 280px;">
+            <canvas id="chartOcupacion"></canvas>
+          </div>
+          <div style="display: flex; justify-content: space-around; margin-top: 12px; font-size: 11.5px; color: var(--kiwi-gray-medium);">
+            <span>🟢 Alta (&gt;50%)</span>
+            <span>🟠 Media (35% - 50%)</span>
+            <span>🔴 Baja (&lt;35%)</span>
+            <span style="color: var(--kiwi-orange); font-weight: bold;">— Promedio (39.7%)</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Comportamiento por Día de la Semana</span>
+            <span class="badge badge-neutral">Capacidad: 49 uds/noche</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Día</th>
+                  <th>Dorms (30)</th>
+                  <th>Priv. Comp (9)</th>
+                  <th>Priv. Priv (10)</th>
+                  <th>Ocupadas</th>
+                  <th>Libres</th>
+                  <th>Ocupación %</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Lun 07</strong></td>
+                  <td>13 / 17</td>
+                  <td>6 / 3</td>
+                  <td>3 / 7</td>
+                  <td><strong>22</strong></td>
+                  <td>27</td>
+                  <td><span class="badge badge-warning">44.9%</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Mar 08</strong></td>
+                  <td>12 / 18</td>
+                  <td>7 / 2</td>
+                  <td>1 / 9</td>
+                  <td><strong>20</strong></td>
+                  <td>29</td>
+                  <td><span class="badge badge-warning">40.8%</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Mié 09</strong></td>
+                  <td>7 / 23</td>
+                  <td>5 / 4</td>
+                  <td>1 / 9</td>
+                  <td><strong>13</strong></td>
+                  <td>36</td>
+                  <td><span class="badge badge-danger">26.5%</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Jue 10</strong></td>
+                  <td>12 / 18</td>
+                  <td>4 / 5</td>
+                  <td>1 / 9</td>
+                  <td><strong>17</strong></td>
+                  <td>32</td>
+                  <td><span class="badge badge-danger">34.7%</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Vie 11</strong></td>
+                  <td>7 / 23</td>
+                  <td>6 / 3</td>
+                  <td>3 / 7</td>
+                  <td><strong>16</strong></td>
+                  <td>33</td>
+                  <td><span class="badge badge-danger">32.7%</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Sáb 12</strong></td>
+                  <td>10 / 20</td>
+                  <td>9 / 0</td>
+                  <td>6 / 4</td>
+                  <td><strong>25</strong></td>
+                  <td>24</td>
+                  <td><span class="badge badge-success">51.0%</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Dom 13</strong></td>
+                  <td>12 / 18</td>
+                  <td>6 / 3</td>
+                  <td>5 / 5</td>
+                  <td><strong>23</strong></td>
+                  <td>26</td>
+                  <td><span class="badge badge-warning">46.9%</span></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>TOTAL SEMANA</td>
+                  <td>73 / 210 (34.8%)</td>
+                  <td>43 / 63 (68.3%)</td>
+                  <td>20 / 70 (28.6%)</td>
+                  <td>136</td>
+                  <td>207</td>
+                  <td>39.7%</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Análisis Estratégico de Ocupación</div>
+        <div class="grid-3" style="font-size: 13px; line-height: 1.5;">
+          <div>
+            <h4 style="color: var(--kiwi-orange); font-size: 13.5px; margin-bottom: 6px;">1. Dicotomía Semana vs Fin de Semana</h4>
+            <p style="color: var(--kiwi-gray-dark);">
+              Entre semana (lunes a viernes) la ocupación promedió <strong>35.9%</strong>, mientras que sábado y domingo repuntó a <strong>49.0%</strong> (+13.1 puntos porcentuales). El fin de semana tracciona turismo de ocio regional e internacional concentrado.
+            </p>
+          </div>
+          <div>
+            <h4 style="color: var(--kiwi-green-dark); font-size: 13.5px; margin-bottom: 6px;">2. La Paradoja del Miércoles y Viernes</h4>
+            <p style="color: var(--kiwi-gray-dark);">
+              El miércoles fue el valle absoluto (26.5%). El viernes, curiosamente, tuvo baja ocupación física en unidades (32.7%), pero generó un ADR de <strong>$163.440 COP</strong> al llenarse de huéspedes de alto valor en privadas que pagaron tarifas premium.
+            </p>
+          </div>
+          <div>
+            <h4 style="color: var(--alert-blue); font-size: 13.5px; margin-bottom: 6px;">3. Capacidad Ociosa Monetizable</h4>
+            <p style="color: var(--kiwi-gray-dark);">
+              Quedaron <strong>207 unidades-noches vacías</strong>. De ellas, 137 fueron camas de dormitorios y 50 fueron privadas con baño privado. El hostel no tiene restricción de capacidad, sino un reto de conversión comercial y distribución estratégica.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. RESERVAS NUEVAS -->
+    <section id="reservas">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">06</span> Reservas Creadas Durante la Semana</div>
+        <span class="section-tag">Análisis Comercial y Canales de Venta</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Rendimiento por Canal de Venta (Reservas Creadas: 48)</span>
+            <span class="badge badge-info">Total: $10.083.789 COP</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Canal</th>
+                  <th>Reservas</th>
+                  <th>Ingresos</th>
+                  <th>% Total</th>
+                  <th>Ticket Prom.</th>
+                  <th>ADR Noche</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Booking.com</strong></td>
+                  <td>16 (33.3%)</td>
+                  <td>$4.445.440</td>
+                  <td><span class="badge badge-success">44.1%</span></td>
+                  <td>$277.840</td>
+                  <td>$105.844</td>
+                </tr>
+                <tr>
+                  <td><strong>Hostelworld</strong></td>
+                  <td>22 (45.8%)</td>
+                  <td>$4.073.849</td>
+                  <td><span class="badge badge-warning">40.4%</span></td>
+                  <td>$185.175</td>
+                  <td>$64.664</td>
+                </tr>
+                <tr>
+                  <td><strong>Booking Engine</strong></td>
+                  <td>3 (6.3%)</td>
+                  <td>$786.000</td>
+                  <td><span class="badge badge-info">7.8%</span></td>
+                  <td>$262.000</td>
+                  <td><strong>$157.200</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Recepción</strong></td>
+                  <td>7 (14.6%)</td>
+                  <td>$778.500</td>
+                  <td><span class="badge badge-neutral">7.7%</span></td>
+                  <td>$111.214</td>
+                  <td>$86.500</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>TOTAL</td>
+                  <td>48</td>
+                  <td>$10.083.789</td>
+                  <td>100.0%</td>
+                  <td>$210.079</td>
+                  <td>$84.738</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div style="font-size: 11.5px; color: var(--kiwi-gray-medium); margin-top: 6px;">
+            * El canal directo (Engine + Recepción) sumó 20.8% de reservas y 15.5% del revenue. El 84.5% restante depende de OTAs.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Distribución de Revenue por Canal vs ADR</span>
+            <span class="badge badge-neutral">Calidad vs Volumen</span>
+          </div>
+          <div style="height: 250px;">
+            <canvas id="chartCanales"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Estado de Cobro y Flujo de Caja (Reservas Creadas)</div>
+          <div style="display: flex; align-items: center; gap: 20px;">
+            <div style="width: 140px; height: 140px; flex-shrink: 0;">
+              <canvas id="chartCobro"></canvas>
+            </div>
+            <div style="flex: 1; font-size: 12.5px;">
+              <div style="margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between; font-weight: 700;">
+                  <span>Sin pagos / Sin definir:</span>
+                  <span style="color: var(--alert-red);">$7.100.662 (70.4%)</span>
+                </div>
+                <div class="progress-wrap"><div class="progress-bar red" style="width: 70.4%;"></div></div>
+              </div>
+              <div style="margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between; font-weight: 700;">
+                  <span>Cuentas pagadas:</span>
+                  <span style="color: var(--alert-green);">$1.898.511 (18.8%)</span>
+                </div>
+                <div class="progress-wrap"><div class="progress-bar green" style="width: 18.8%;"></div></div>
+              </div>
+              <div>
+                <div style="display: flex; justify-content: space-between; font-weight: 700;">
+                  <span>Pagos parciales:</span>
+                  <span style="color: var(--alert-amber);">$1.084.616 (10.8%)</span>
+                </div>
+                <div class="progress-wrap"><div class="progress-bar orange" style="width: 10.8%;"></div></div>
+              </div>
+            </div>
+          </div>
+          <div style="font-size: 11.5px; color: var(--kiwi-gray-medium); margin-top: 12px; background: #fafbfc; padding: 8px; border-radius: 6px;">
+            ⚠️ <strong>Alerta de Flujo:</strong> El 70.4% del revenue de nuevas reservas depende de cobro futuro en recepción. Es imperativo asegurar tarjetas de crédito válidas para mitigar el riesgo de no-show.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">¿Qué nos dicen las reservas? (Lectura Ejecutiva)</div>
+          <div style="font-size: 12.5px; color: var(--kiwi-gray-dark); line-height: 1.5;">
+            <p style="margin-bottom: 8px;">
+              <strong>1. Disparidad Cualitativa de Canales:</strong> Booking.com y Hostelworld atraen clientes opuestos. Booking genera un ADR de $105.844 (64% superior al de HW), empujado por huéspedes de habitaciones privadas. Hostelworld aporta ocupación base en camas compartidas ($64.664 ADR).
+            </p>
+            <p style="margin-bottom: 8px;">
+              <strong>2. La Prueba del Canal Directo:</strong> Booking Engine obtuvo el mayor ADR ($157.200 COP). Aunque solo registró 3 reservas, valida la disposición a pagar tarifa plena en web propia sin comisión de intermediarios.
+            </p>
+            <p>
+              <strong>3. Subvaloración en Recepción:</strong> Las 7 reservas de mostrador registraron un ADR de apenas $86.500 COP y 1.29 noches promedio. Para ser reservas de último momento/walk-in, el hostel está regalando tarifa donde hay menor elasticidad al precio.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CANCELACIONES -->
+    <section id="cancelaciones">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">07</span> Análisis de Cancelaciones</div>
+        <span class="section-tag">Impacto Económico y Puntos de Fuga</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Desglose de Cancelaciones por Causa</span>
+            <span class="badge badge-danger">Impacto Real: $2.689.024 COP</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Motivo de Cancelación</th>
+                  <th>Registros</th>
+                  <th>Valor Total</th>
+                  <th>% del Impacto</th>
+                  <th>Nivel de Riesgo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Pago rechazado (Gateway)</strong></td>
+                  <td>2</td>
+                  <td>$1.320.000</td>
+                  <td><strong>49.1%</strong></td>
+                  <td><span class="badge badge-danger">Crítico</span></td>
+                </tr>
+                <tr>
+                  <td><strong>No show (Sin aviso)</strong></td>
+                  <td>3</td>
+                  <td>$960.000</td>
+                  <td><strong>35.7%</strong></td>
+                  <td><span class="badge badge-warning">Alto</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Cancelación automática (Lobby)</strong></td>
+                  <td>4</td>
+                  <td>$409.024</td>
+                  <td><strong>15.2%</strong></td>
+                  <td><span class="badge badge-info">Moderado</span></td>
+                </tr>
+                <tr style="background: #fafafa; color: #888;">
+                  <td><em>Cambio de habitación (Interno)*</em></td>
+                  <td>2</td>
+                  <td>$104.440</td>
+                  <td>0.0%</td>
+                  <td><span class="badge badge-neutral">Neutro</span></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>TOTAL CANCELACIONES REALES</td>
+                  <td>9</td>
+                  <td>$2.689.024</td>
+                  <td>100.0%</td>
+                  <td>Tasa: ~15.8%</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div style="font-size: 11px; color: var(--kiwi-gray-medium); margin-top: 4px;">
+            * Los 2 cambios de habitación son reclasificaciones de sistema sin impacto negativo en caja.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Distribución de Pérdidas por Causa</span>
+            <span class="badge badge-neutral">Concentración 84.8%</span>
+          </div>
+          <div style="height: 220px;">
+            <canvas id="chartCancelaciones"></canvas>
+          </div>
+          <div style="font-size: 12px; color: var(--kiwi-gray-dark); margin-top: 8px;">
+            El <strong>84.8% del dinero perdido ($2.280.000 COP)</strong> se concentró en dos clientes específicos: Tomas Drake (2 intentos de $660k fallidos) y Sara Ramirez Franco (reserva múltiple de $960k que terminó en no-show).
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Auditoría Individual de Cancelaciones Críticas</div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Huésped</th>
+                <th>Habitación / Cama</th>
+                <th>Estadía Prevista</th>
+                <th>Causa Identificada</th>
+                <th>Monto COP</th>
+                <th>Acción Correctiva Sugerida</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Tomas Drake</strong> (x2)</td>
+                <td>Privada 7</td>
+                <td>11–14 sep. (3 noches)</td>
+                <td><span class="badge badge-danger">Pago rechazado</span></td>
+                <td><strong>$1.320.000</strong></td>
+                <td>Pasarela con 3DS seguro y contacto inmediato por WhatsApp antes de anular.</td>
+              </tr>
+              <tr>
+                <td><strong>Sara Ramirez Franco</strong> (x3)</td>
+                <td>Privada 43 + Iris Camas 1 y 2</td>
+                <td>8–10 sep. (2 noches)</td>
+                <td><span class="badge badge-warning">No show</span></td>
+                <td><strong>$960.000</strong></td>
+                <td>Exigir depósito previo no reembolsable en reservas grupales/múltiples.</td>
+              </tr>
+              <tr>
+                <td><strong>Darren Singh</strong></td>
+                <td>Privada 10</td>
+                <td>9–11 sep. (2 noches)</td>
+                <td><span class="badge badge-info">Auto Lobbybookings</span></td>
+                <td>$244.800</td>
+                <td>Revisar reglas de ventana de tiempo para pago en motor propio.</td>
+              </tr>
+              <tr>
+                <td><strong>Hashim Khan</strong></td>
+                <td>Dorm Verde – Cama 6</td>
+                <td>9–11 sep. (2 noches)</td>
+                <td><span class="badge badge-info">Auto Lobbybookings</span></td>
+                <td>$66.304</td>
+                <td>Re-comercialización ágil en OTA tras liberación automática.</td>
+              </tr>
+              <tr>
+                <td><strong>Didier Buitrago</strong> (x2)</td>
+                <td>Dorm 11 – Camas 3 y 4</td>
+                <td>9–10 sep. (1 noche)</td>
+                <td><span class="badge badge-info">Auto Lobbybookings</span></td>
+                <td>$97.920</td>
+                <td>Validar duplicidad de intentos de reserva nacional.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="insight-box" style="margin-top: 12px; margin-bottom: 0;">
+          <h4>Diagnóstico de Revenue Management sobre Cancelaciones:</h4>
+          <p>El problema no es un volumen desbordado de cancelaciones (solo 9 registros), sino su <strong>alta concentración económica</strong>. La pérdida de <strong>$2.689.024 COP</strong> equivale al 24.3% del total ingresado por check-ins. Implementar un protocolo de rescate inmediato de pagos rechazados habría salvado $1.32M de manera inmediata.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CHECK-INS -->
+    <section id="checkin-out">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">08</span> Check-ins Realizados (07 al 13 de Septiembre)</div>
+        <span class="section-tag">Demanda Efectiva Alojada</span>
+      </div>
+
+      <div class="card" style="background: #faf8f5; border: 1px solid #fae6dc;">
+        <p style="font-size: 12px; color: var(--kiwi-gray-dark); margin: 0;">
+          ℹ️ <strong>Aclaración Metodológica:</strong> Los ingresos presentados en esta sección corresponden a las entradas/check-ins registrados durante el periodo analizado ($11.068.403 COP en 49 reservas efectivas), diferenciándose de las reservas creadas ($10.083.789 COP) y del total de caja contable P&L ($16.151.293 COP).
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Ingresos y ADR por Día de Check-in</span>
+            <span class="badge badge-success">Pico Sábado: $3.49M</span>
+          </div>
+          <div style="height: 270px;">
+            <canvas id="chartCheckinDia"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Detalle Diario de Entradas Efectivas</span>
+            <span class="badge badge-neutral">Total: 49 Reservas / 123 Noches</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Día de Ingreso</th>
+                  <th>Reservas</th>
+                  <th>Noches</th>
+                  <th>Ingresos COP</th>
+                  <th>ADR del Día</th>
+                  <th>% Revenue</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Lun 07-Sep</strong></td>
+                  <td>3</td>
+                  <td>7</td>
+                  <td>$623.560</td>
+                  <td>$89.080</td>
+                  <td>5.6%</td>
+                </tr>
+                <tr>
+                  <td><strong>Mar 08-Sep</strong></td>
+                  <td>11</td>
+                  <td>29</td>
+                  <td>$2.103.036</td>
+                  <td>$72.518</td>
+                  <td>19.0%</td>
+                </tr>
+                <tr>
+                  <td><strong>Mié 09-Sep</strong></td>
+                  <td>4</td>
+                  <td>15</td>
+                  <td>$943.768</td>
+                  <td>$62.918</td>
+                  <td>8.5%</td>
+                </tr>
+                <tr>
+                  <td><strong>Jue 10-Sep</strong></td>
+                  <td>8</td>
+                  <td>15</td>
+                  <td>$909.724</td>
+                  <td>$60.648</td>
+                  <td>8.2%</td>
+                </tr>
+                <tr>
+                  <td><strong>Vie 11-Sep</strong></td>
+                  <td>5</td>
+                  <td>13</td>
+                  <td>$2.124.720</td>
+                  <td><strong>$163.440</strong></td>
+                  <td><span class="badge badge-success">19.2%</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Sáb 12-Sep</strong></td>
+                  <td>12</td>
+                  <td>32</td>
+                  <td>$3.491.586</td>
+                  <td><strong>$109.112</strong></td>
+                  <td><span class="badge badge-success">31.5%</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Dom 13-Sep</strong></td>
+                  <td>6</td>
+                  <td>12</td>
+                  <td>$872.009</td>
+                  <td>$72.667</td>
+                  <td>7.9%</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>TOTAL</td>
+                  <td>49</td>
+                  <td>123</td>
+                  <td>$11.068.403</td>
+                  <td>$89.987</td>
+                  <td>100.0%</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div style="font-size: 11.5px; color: var(--kiwi-gray-medium); margin-top: 4px;">
+            Fin de semana (Vie + Sáb): <strong>50.7% del revenue ($5.616.306 COP)</strong> con solo el 36.6% de las noches vendidas.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. CHECK-OUTS & OPERACIONES -->
+    <section id="checkouts">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">09</span> Check-outs e Impacto Operativo</div>
+        <span class="section-tag">Housekeeping y Rotación</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Balance de Check-outs de la Semana</span>
+            <span class="badge badge-info">78 Personas / 59 Reservas</span>
+          </div>
+          <p style="font-size: 13px; color: var(--kiwi-gray-dark); margin-bottom: 12px;">
+            Durante la semana se procesaron <strong>59 check-outs de 78 personas</strong>. Se confirma que no hubo registros en los dormitorios Roble ni Bamboo (exclusivos de voluntarios).
+          </p>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Habitaciones con Mayor Rotación</th>
+                  <th>Huéspedes Salidos</th>
+                  <th>Check-outs Realizados</th>
+                  <th>Carga de Housekeeping</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Privado 2</strong> (3 camas single, baño compartido)</td>
+                  <td>5</td>
+                  <td>3</td>
+                  <td><span class="badge badge-danger">Muy Alta</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Privado 14</strong> (Doble, baño compartido)</td>
+                  <td>5</td>
+                  <td>3</td>
+                  <td><span class="badge badge-danger">Muy Alta</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Privado 13</strong> (Doble, baño compartido)</td>
+                  <td>5</td>
+                  <td>3</td>
+                  <td><span class="badge badge-danger">Muy Alta</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Privado 4</strong> (3 camas, baño privado)</td>
+                  <td>5</td>
+                  <td>2</td>
+                  <td><span class="badge badge-warning">Alta</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Privado 10</strong> (2 camas dobles, compartido)</td>
+                  <td>4</td>
+                  <td>2</td>
+                  <td><span class="badge badge-warning">Alta</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Privado 3</strong> (Doble, baño compartido)</td>
+                  <td>4</td>
+                  <td>2</td>
+                  <td><span class="badge badge-warning">Alta</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Implicaciones para Operaciones y Front Desk</div>
+          <div style="font-size: 12.5px; color: var(--kiwi-gray-dark); line-height: 1.5;">
+            <div style="margin-bottom: 12px; background: #fafbfc; padding: 10px; border-radius: 6px; border-left: 3px solid var(--kiwi-orange);">
+              <strong>Cuello de Botella en Housekeeping:</strong> Las habitaciones privadas con baño compartido (Privados 2, 13, 14, 10, 3) tuvieron hasta 3 recambios completos en 7 días. Requieren prioridad en dotación de lencería y turnos matutinos de camareras entre 11:00 y 15:00.
+            </div>
+            <div style="margin-bottom: 12px; background: #fafbfc; padding: 10px; border-radius: 6px; border-left: 3px solid var(--alert-green);">
+              <strong>Sincronización Check-in / Check-out:</strong> El sábado coincidieron 16 llegadas con el mayor volumen de salidas, saturando recepción y custodia de equipajes. Se sugiere implementar pre-check-in digital vía WhatsApp.
+            </div>
+            <div style="background: #fafbfc; padding: 10px; border-radius: 6px; border-left: 3px solid var(--alert-blue);">
+              <strong>Late Check-Out Monetizado:</strong> Aprovechando que la ocupación general fue de 39.7%, se debió comercializar activamente <em>Late Check-out</em> ($30.000 - $50.000 COP) en habitaciones que no tenían llegada el mismo día.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. HUÉSPEDES EN CASA -->
+    <section id="huespedes">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">10</span> Huéspedes en Casa y Perfil Sociodemográfico</div>
+        <span class="section-tag">Análisis del Viajero Casa Kiwi</span>
+      </div>
+
+      <div class="grid-4" style="margin-bottom: 20px;">
+        <div class="card" style="padding: 16px; text-align: center;">
+          <div style="font-size: 11px; font-weight: 700; color: var(--kiwi-gray-medium);">REGISTROS DE ESTANCIA</div>
+          <div style="font-size: 24px; font-weight: 800; color: var(--kiwi-orange);">69</div>
+          <div style="font-size: 11px; color: var(--kiwi-gray-medium);">Movimientos totales</div>
+        </div>
+        <div class="card" style="padding: 16px; text-align: center;">
+          <div style="font-size: 11px; font-weight: 700; color: var(--kiwi-gray-medium);">VIAJEROS ÚNICOS</div>
+          <div style="font-size: 24px; font-weight: 800; color: var(--kiwi-green-dark);">63</div>
+          <div style="font-size: 11px; color: var(--kiwi-gray-medium);">6 extensiones / cambios</div>
+        </div>
+        <div class="card" style="padding: 16px; text-align: center;">
+          <div style="font-size: 11px; font-weight: 700; color: var(--kiwi-gray-medium);">NOCHES-PERSONA</div>
+          <div style="font-size: 24px; font-weight: 800; color: var(--kiwi-dark);">182</div>
+          <div style="font-size: 11px; color: var(--kiwi-gray-medium);">Noches acumuladas</div>
+        </div>
+        <div class="card" style="padding: 16px; text-align: center;">
+          <div style="font-size: 11px; font-weight: 700; color: var(--kiwi-gray-medium);">ESTANCIA MEDIA REAL</div>
+          <div style="font-size: 24px; font-weight: 800; color: var(--alert-blue);">2.89</div>
+          <div style="font-size: 11px; color: var(--kiwi-gray-medium);">Noches por viajero único</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Distribución de Huéspedes por País de Origen</span>
+            <span class="badge badge-info">91.3% Internacionales</span>
+          </div>
+          <div style="height: 260px;">
+            <canvas id="chartPaises"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Demografía y Preferencias de Estancia</span>
+            <span class="badge badge-neutral">Edad Mediana: 26 años</span>
+          </div>
+          <div style="font-size: 12.5px; line-height: 1.5; color: var(--kiwi-gray-dark);">
+            <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #edf0f2;">
+              <span><strong>Distribución por Género:</strong></span>
+              <span>40 Hombres (58%) / 29 Mujeres (42%)</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #edf0f2;">
+              <span><strong>Edad Promedio:</strong></span>
+              <span>28.4 años (75% entre 21 y 31 años; rango 21-46)</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #edf0f2;">
+              <span><strong>Tipo de Alojamiento Elegido:</strong></span>
+              <span><strong>60.9% en Privadas</strong> (42) / 39.1% en Dorms (27)</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #edf0f2;">
+              <span><strong>Mercados Principales:</strong></span>
+              <span>Francia (18.8%) y Alemania (18.8%) lideran</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 6px 0;">
+              <span><strong>Mercado Local (Colombia):</strong></span>
+              <span>8.7% (6 huéspedes registrados)</span>
+            </div>
+          </div>
+
+          <div class="insight-box green" style="margin-top: 14px; margin-bottom: 0;">
+            <h4>Oportunidad de Monetización Cruzada:</h4>
+            <p>Con una estadía promedio de <strong>casi 3 noches</strong> y un huésped predominantemente europeo joven (26-28 años), el hostel cuenta con una ventana ideal para maximizar el gasto por persona en tours (Guatapé, Comuna 13), eventos sociales en el rooftop/bar y venta de bebidas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. PRIVADAS VS DORMITORIOS -->
+    <section id="habitaciones">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">11</span> Privadas vs. Dormitorios Compartidos</div>
+        <span class="section-tag">Mix de Producto y Rentabilidad Comparada</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Comparativa Estructural (Check-ins de la Semana)</span>
+            <span class="badge badge-neutral">Divergencia de Valor</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Métrica</th>
+                  <th>Habitaciones Privadas</th>
+                  <th>Dormitorios Compartidos</th>
+                  <th>Diferencial / Ratio</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Reservas</strong></td>
+                  <td>22 (44.9%)</td>
+                  <td>27 (55.1%)</td>
+                  <td>Dorms traccionan más volumen</td>
+                </tr>
+                <tr>
+                  <td><strong>Noches Vendidas</strong></td>
+                  <td>58 noches (47.2%)</td>
+                  <td>65 noches (52.8%)</td>
+                  <td>Volumen equilibrado</td>
+                </tr>
+                <tr>
+                  <td><strong>Ingresos Check-in</strong></td>
+                  <td><strong>$8.140.012 (73.5%)</strong></td>
+                  <td><strong>$2.928.391 (26.5%)</strong></td>
+                  <td><span class="badge badge-success">Privadas: 2.8x más revenue</span></td>
+                </tr>
+                <tr>
+                  <td><strong>ADR Noche</strong></td>
+                  <td><strong>$140.345 COP</strong></td>
+                  <td><strong>$45.052 COP</strong></td>
+                  <td><span class="badge badge-success">3.1x Tarifa promedio</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Ticket Promedio</strong></td>
+                  <td><strong>$370.001 COP</strong></td>
+                  <td><strong>$108.459 COP</strong></td>
+                  <td>3.4x Valor por reserva</td>
+                </tr>
+                <tr>
+                  <td><strong>Huéspedes Albergados</strong></td>
+                  <td>42 huéspedes (60.9%)</td>
+                  <td>27 huéspedes (39.1%)</td>
+                  <td>Privadas alojan más pax</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Distribución de Noches vs Revenue</span>
+            <span class="badge badge-neutral">Gráfico Comparativo</span>
+          </div>
+          <div style="height: 250px;">
+            <canvas id="chartMixProducto"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. COMPORTAMIENTO POR TIPO DE HABITACIÓN (Ranking) -->
+      <div class="card">
+        <div class="card-title">
+          <span>Ranking de Rendimiento por Categoría de Habitación</span>
+          <span class="badge badge-neutral">Semana del 07 al 13 de Septiembre</span>
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Categoría</th>
+                <th>Capacidad Semanal</th>
+                <th>Vendidas</th>
+                <th>Ocupación %</th>
+                <th>Huéspedes</th>
+                <th>Ingreso Estimado</th>
+                <th>Estatus Operativo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Privadas Baño Compartido (9 uds)</strong></td>
+                <td>63 hab-noches</td>
+                <td>43</td>
+                <td><strong>68.3%</strong></td>
+                <td>~35 pax</td>
+                <td>~$5.500.000 COP</td>
+                <td><span class="badge badge-success">🟢 Excelente Demanda (Sáb 100%)</span></td>
+              </tr>
+              <tr>
+                <td><strong>2. Dormitorios Compartidos (30 camas)</strong></td>
+                <td>210 camas-noches</td>
+                <td>73</td>
+                <td><strong>34.8%</strong></td>
+                <td>27 pax</td>
+                <td>$2.928.391 COP</td>
+                <td><span class="badge badge-warning">🟠 Capacidad Ociosa (137 libres)</span></td>
+              </tr>
+              <tr>
+                <td><strong>3. Privadas Baño Privado (10 uds)</strong></td>
+                <td>70 hab-noches</td>
+                <td>20</td>
+                <td><strong>28.6%</strong></td>
+                <td>~15 pax</td>
+                <td>~$2.640.000 COP</td>
+                <td><span class="badge badge-danger">🔴 Bajo Desempeño (Mart-Juev: 10%)</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="font-size: 12px; color: var(--kiwi-gray-dark); margin-top: 6px;">
+          💡 <strong>Hallazgo Clave:</strong> La categoría <em>Privadas con Baño Privado</em> sufrió una parálisis severa de martes a jueves (solo 1 habitación ocupada por noche de 10 disponibles). Existe una desconexión en precio percibido o visibilidad OTA frente a las privadas con baño compartido.
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. INGRESOS Y RESULTADO FINANCIERO (P&L) -->
+    <section id="ingresos">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">12</span> Ingresos y Estado de Resultados (P&L)</div>
+        <span class="section-tag">Rendimiento Operativo Consolidado</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Estructura de Ingresos y Gastos de la Semana</span>
+            <span class="badge badge-success">Margen Neto: 90.8%</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Concepto Contable</th>
+                  <th>Monto COP</th>
+                  <th>% del Total</th>
+                  <th>Observación Operativa</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #fafcf2;">
+                  <td><strong>TOTAL INGRESOS</strong></td>
+                  <td><strong>$16.151.293</strong></td>
+                  <td><strong>100.0%</strong></td>
+                  <td>Caja total acumulada</td>
+                </tr>
+                <tr>
+                  <td>• Ingresos por Alojamiento</td>
+                  <td>$12.728.439</td>
+                  <td>78.8%</td>
+                  <td>Estancias facturadas en sistema</td>
+                </tr>
+                <tr>
+                  <td>• Ventas Productos y Servicios</td>
+                  <td>$2.812.000</td>
+                  <td>17.4%</td>
+                  <td>Consumos auxiliares / Recepción</td>
+                </tr>
+                <tr>
+                  <td>• Otros Ingresos</td>
+                  <td>$610.854</td>
+                  <td>3.8%</td>
+                  <td>Comisiones y tours</td>
+                </tr>
+                <tr style="background: #fffafa;">
+                  <td><strong>TOTAL GASTOS REGISTRADOS</strong></td>
+                  <td><strong>$1.482.355</strong></td>
+                  <td><strong>9.2%</strong></td>
+                  <td>Gastos de operación imputados</td>
+                </tr>
+                <tr>
+                  <td>• Gastos Hotelería</td>
+                  <td>$1.003.595</td>
+                  <td>6.2%</td>
+                  <td>Lavandería, insumos, aseo</td>
+                </tr>
+                <tr>
+                  <td>• Gastos Bar</td>
+                  <td>$478.760</td>
+                  <td>3.0%</td>
+                  <td>Reposición de bebidas y stock</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>RESULTADO OPERATIVO BRUTO</td>
+                  <td>$14.668.938</td>
+                  <td>90.8%</td>
+                  <td>Flujo positivo del periodo</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Composición de Ingresos del Hostel</span>
+            <span class="badge badge-neutral">Diversificación de Caja</span>
+          </div>
+          <div style="height: 250px;">
+            <canvas id="chartPnL"></canvas>
+          </div>
+          <div style="font-size: 12px; color: var(--kiwi-gray-dark); margin-top: 10px;">
+            El <strong>21.2% de los ingresos totales ($3.422.854 COP)</strong> provino de servicios auxiliares y productos, lo cual confirma que el gasto dentro del hostel complementa sustancialmente el ingreso por camas.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. HALLAZGOS DE REVENUE MANAGEMENT -->
+    <section id="revenue-management">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">13</span> Hallazgos Críticos de Revenue Management</div>
+        <span class="section-tag">Diagnóstico y Recomendaciones Profundas</span>
+      </div>
+
+      <!-- Finding 1 -->
+      <div class="finding-card">
+        <div class="finding-header">
+          <div class="finding-title">1. Elasticidad Tarifaria Asimétrica Fin de Semana vs. Días Valle</div>
+          <span class="finding-pillar">Pricing Dinámico</span>
+        </div>
+        <div class="finding-triad">
+          <div class="triad-col evidence">
+            <div class="triad-label">📊 Dato / Evidencia</div>
+            <div class="triad-text">El viernes alcanzó un ADR de $163.440 (+82% sobre el promedio semanal), mientras miércoles ($62.918) y jueves ($60.648) operaron a tarifas deprimidas con baja ocupación (26.5% y 34.7%).</div>
+          </div>
+          <div class="triad-col interpretation">
+            <div class="triad-label">🧠 Interpretación</div>
+            <div class="triad-text">La demanda de fin de semana no tiene sensibilidad al precio y convalida tarifas altas en privadas. Entre semana, bajar tarifas sin una estrategia de empaquetamiento destruyó el ADR sin llenar camas.</div>
+          </div>
+          <div class="triad-col action">
+            <div class="triad-label">🎯 Acción Recomendada</div>
+            <div class="triad-text">Aumentar tarifas de privadas viernes-sábado en +15%, e implementar promociones de "Quédate 3 noches y paga 2" de domingo a jueves para incentivar la extensión de estadía.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Finding 2 -->
+      <div class="finding-card">
+        <div class="finding-header">
+          <div class="finding-title">2. Rescate Urgente de Fuga de Ingresos por Pasarela de Pagos</div>
+          <span class="finding-pillar">Flujo de Caja</span>
+        </div>
+        <div class="finding-triad">
+          <div class="triad-col evidence">
+            <div class="triad-label">📊 Dato / Evidencia</div>
+            <div class="triad-text">Dos transacciones rechazadas generaron la pérdida de $1.320.000 COP (49.1% de las cancelaciones reales), sumadas a $960.000 COP en no-shows no garantizados.</div>
+          </div>
+          <div class="triad-col interpretation">
+            <div class="triad-label">🧠 Interpretación</div>
+            <div class="triad-text">La pasarela del motor de reservas carece de protocolos de reintento automático o 3D-Secure flexible para tarjetas internacionales, y recepción no contacta oportunamente al cliente antes de anular.</div>
+          </div>
+          <div class="triad-col action">
+            <div class="triad-label">🎯 Acción Recomendada</div>
+            <div class="triad-text">Configurar alertas automáticas vía WhatsApp/Email cuando un pago falle, otorgando una ventana de 6 horas al huésped para enviar link de pago alternativo (Wompi/Stripe/PayPal) antes de liberar inventario.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Finding 3 -->
+      <div class="finding-card">
+        <div class="finding-header">
+          <div class="finding-title">3. Submonetización del Cliente Walk-in y de Recepción</div>
+          <span class="finding-pillar">Operaciones / Front Desk</span>
+        </div>
+        <div class="finding-triad">
+          <div class="triad-col evidence">
+            <div class="triad-label">📊 Dato / Evidencia</div>
+            <div class="triad-text">Las 7 reservas de recepción registraron un ADR de $86.500 COP y 1.29 noches promedio, por debajo del promedio global de $89.987 COP y muy lejos de Booking ($119.020).</div>
+          </div>
+          <div class="triad-col interpretation">
+            <div class="triad-label">🧠 Interpretación</div>
+            <div class="triad-text">El huésped que llega físicamente al mostrador (walk-in en D-0) tiene necesidad inmediata de alojamiento y nula elasticidad. Venderle por debajo de la tarifa OTA es regalar margen operativo.</div>
+          </div>
+          <div class="triad-col action">
+            <div class="triad-label">🎯 Acción Recomendada</div>
+            <div class="triad-text">Fijar política tarifaria en front desk: la tarifa de mostrador debe ser igual a la tarifa pública de Booking.com o con un diferencial máximo de un trago de cortesía en el bar, no un descuento directo de caja.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Finding 4 -->
+      <div class="finding-card">
+        <div class="finding-header">
+          <div class="finding-title">4. Desconexión Comercial en Privadas con Baño Privado</div>
+          <span class="finding-pillar">Distribución de Producto</span>
+        </div>
+        <div class="finding-triad">
+          <div class="triad-col evidence">
+            <div class="triad-label">📊 Dato / Evidencia</div>
+            <div class="triad-text">La categoría operó a solo 28.6% semanal (20 noches vendidas de 70). De martes a jueves solo se vendió 1 habitación por noche (10% ocupación diaria).</div>
+          </div>
+          <div class="triad-col interpretation">
+            <div class="triad-label">🧠 Interpretación</div>
+            <div class="triad-text">Los viajeros consideran que el salto tarifario frente a las privadas con baño compartido (68.3% ocupación) es excesivo para los servicios percibidos, o las imágenes en OTAs no destacan su valor.</div>
+          </div>
+          <div class="triad-col action">
+            <div class="triad-label">🎯 Acción Recomendada</div>
+            <div class="triad-text">Ajustar el diferencial tarifario entre baño compartido y baño privado entre semana (reducir brecha en 15%), e implementar upselling en recepción al hacer check-in por solo $25.000 COP adicionales por noche.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. RECOMENDACIONES PARA LA PRÓXIMA SEMANA -->
+    <section id="recomendaciones">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">14</span> Recomendaciones Accionables para la Siguiente Semana</div>
+        <span class="section-tag">Plan Táctico Dividido por Áreas</span>
+      </div>
+
+      <div class="recom-grid">
+        <div class="recom-card">
+          <span class="recom-pill revenue">Revenue Management</span>
+          <div class="recom-title">Estructurar Tarifas Dinámicas por Ventana de Anticipación</div>
+          <div class="recom-desc">
+            Dado que la mediana de lead time es de 0 días, aplicar la matriz de pricing: en D-7 a D-3 mantener tarifa base; en D-2 y D-1 para fin de semana subir tarifas en privadas +10%; en días valle (miércoles/jueves), lanzar ofertas de último minuto con restricción de estancia mínima de 2 noches.
+          </div>
+        </div>
+
+        <div class="recom-card">
+          <span class="recom-pill comercial">Comercial & Reservas</span>
+          <div class="recom-title">Campaña Focalizada en Mercados Francófono y Germano</div>
+          <div class="recom-desc">
+            Francia y Alemania representaron el 37.6% de huéspedes y el primer lugar en revenue. Optimizar descripciones de habitaciones en Booking y Hostelworld en francés y alemán, y promover reserva directa a través de contenido en redes sociales orientado a Medellín segura y cultural.
+          </div>
+        </div>
+
+        <div class="recom-card">
+          <span class="recom-pill operacion">Operaciones & Front Desk</span>
+          <div class="recom-title">Refuerzo Matutino de Housekeeping en Privadas</div>
+          <div class="recom-desc">
+            Reorganizar los turnos de camareras priorizando las habitaciones privadas con baño compartido (Privados 2, 10, 13, 14), que tienen una rotación acelerada (hasta 3 check-outs por semana), asegurando que estén liberadas antes de las 14:00 para la ola de llegadas de fin de semana.
+          </div>
+        </div>
+
+        <div class="recom-card">
+          <span class="recom-pill experiencia">Experiencia del Huésped</span>
+          <div class="recom-title">Estrategia de Venta Cruzada y Extensión de Estadía</div>
+          <div class="recom-desc">
+            Crear el paquete "Medellín Explorer": incentivar a los viajeros de 2 noches a extender una 3ra noche (con 15% de descuento en alojamiento) combinada con un tour guiado a Guatapé y un bono de consumo de $20.000 COP en el bar del hostal.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16. SEMÁFORO DE GESTIÓN -->
+    <section id="semaforo" style="margin-top: 24px;">
+      <div class="section-title-wrap">
+        <div class="section-title"><span class="section-num">15</span> Semáforo de Gestión Ejecutiva</div>
+        <span class="section-tag">Matriz Estratégica Sintética</span>
+      </div>
+
+      <div class="traffic-grid">
+        <div class="traffic-col green">
+          <div class="traffic-head" style="color: var(--alert-green);">🟢 FORTALEZAS</div>
+          <ul class="traffic-list">
+            <li class="traffic-item"><strong>Dominio de Privadas:</strong> Aportan el 73.5% del revenue con ADR superior a $140.000 COP.</li>
+            <li class="traffic-item"><strong>Monetización Fin de Semana:</strong> 50.7% del revenue concentrado en viernes y sábado con ADR de $163k el viernes.</li>
+            <li class="traffic-item"><strong>Tracción Internacional:</strong> 91.3% de extranjeros con estadía promedio saludable de 2.89 noches por viajero.</li>
+          </ul>
+        </div>
+
+        <div class="traffic-col amber">
+          <div class="traffic-head" style="color: var(--alert-amber);">🟠 PUNTOS DE ATENCIÓN</div>
+          <ul class="traffic-list">
+            <li class="traffic-item"><strong>Extrema Dependencia Last-Minute:</strong> Mediana de 0 días de anticipación; alta incertidumbre en inventario.</li>
+            <li class="traffic-item"><strong>Dependencia de OTAs:</strong> 84.5% de los ingresos dependen de Booking y Hostelworld; comisión elevada.</li>
+            <li class="traffic-item"><strong>Desempeño Miércoles:</strong> Valle semanal con solo 26.5% de ocupación y ADR de $62.918 COP.</li>
+          </ul>
+        </div>
+
+        <div class="traffic-col red">
+          <div class="traffic-head" style="color: var(--alert-red);">🔴 RIESGOS</div>
+          <ul class="traffic-list">
+            <li class="traffic-item"><strong>Falla en Cobros Web:</strong> $1.320.000 COP perdidos por pagos rechazados sin canal de contingencia.</li>
+            <li class="traffic-item"><strong>No-Shows Desprotegidos:</strong> $960.000 COP evaporados en reservas múltiples no garantizadas.</li>
+            <li class="traffic-item"><strong>Inventario Ocioso en Dorms:</strong> 137 camas desocupadas (65.2% de la capacidad) generan costos fijos no cubiertos.</li>
+          </ul>
+        </div>
+
+        <div class="traffic-col blue">
+          <div class="traffic-head" style="color: var(--alert-blue);">🔵 OPORTUNIDADES</div>
+          <ul class="traffic-list">
+            <li class="traffic-item"><strong>Escalamiento Directo:</strong> Booking Engine validó ADR de $157.200 COP; potenciar reservas por WhatsApp/Web.</li>
+            <li class="traffic-item"><strong>Upselling a Baño Privado:</strong> Ofrecer upgrade en recepción entre semana para reactivar la categoría (28.6% ocupación).</li>
+            <li class="traffic-item"><strong>Venta Cruzada en Bar y Tours:</strong> Con 63 viajeros únicos jóvenes, dinamizar eventos y consumo nocturno.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-section">
+      <p><strong>CASA KIWI HOSTEL MEDELLÍN</strong> · Reporte Semanal de Revenue Management & Operaciones</p>
+      <p style="font-size: 11px; margin-top: 4px;">Datos extraídos y calculados con base en el periodo oficial del 07 al 13 de Septiembre de 2026. Prohibida su reproducción sin autorización de Gerencia.</p>
+    </footer>
+
+  </div>
+
+  <!-- Chart.js Scripts -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // 1. Chart Ocupacion Diaria
+      const ctxOcup = document.getElementById('chartOcupacion').getContext('2d');
+      new Chart(ctxOcup, {
+        type: 'bar',
+        data: {
+          labels: ['Lun 07', 'Mar 08', 'Mié 09', 'Jue 10', 'Vie 11', 'Sáb 12', 'Dom 13'],
+          datasets: [
+            {
+              type: 'line',
+              label: 'Promedio Semanal (39.7%)',
+              data: [39.7, 39.7, 39.7, 39.7, 39.7, 39.7, 39.7],
+              borderColor: '#F15A3A',
+              borderWidth: 2,
+              borderDash: [6, 4],
+              pointRadius: 0,
+              fill: false
+            },
+            {
+              type: 'bar',
+              label: 'Ocupación %',
+              data: [44.9, 40.8, 26.5, 34.7, 32.7, 51.0, 46.9],
+              backgroundColor: [
+                'rgba(241, 90, 58, 0.75)',
+                'rgba(241, 90, 58, 0.75)',
+                'rgba(211, 47, 47, 0.75)',
+                'rgba(241, 90, 58, 0.75)',
+                'rgba(211, 47, 47, 0.75)',
+                'rgba(130, 148, 8, 0.85)',
+                'rgba(241, 90, 58, 0.75)'
+              ],
+              borderColor: [
+                '#F15A3A',
+                '#F15A3A',
+                '#d32f2f',
+                '#F15A3A',
+                '#d32f2f',
+                '#829408',
+                '#F15A3A'
+              ],
+              borderWidth: 1.5,
+              borderRadius: 6
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 70,
+              ticks: {
+                callback: function(value) { return value + '%'; }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.dataset.label + ': ' + context.parsed.y + '%';
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // 2. Chart Canales (Revenue vs ADR)
+      const ctxCanales = document.getElementById('chartCanales').getContext('2d');
+      new Chart(ctxCanales, {
+        type: 'bar',
+        data: {
+          labels: ['Booking.com', 'Hostelworld', 'Booking Engine', 'Recepción'],
+          datasets: [
+            {
+              label: 'Revenue (Millones COP)',
+              data: [4.45, 4.07, 0.79, 0.78],
+              backgroundColor: 'rgba(241, 90, 58, 0.8)',
+              borderRadius: 6,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: 'ADR Noche (COP)',
+              data: [105844, 64664, 157200, 86500],
+              borderColor: '#829408',
+              backgroundColor: '#829408',
+              borderWidth: 2,
+              pointRadius: 5,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              type: 'linear',
+              position: 'left',
+              title: { display: true, text: 'Revenue (M COP)' },
+              beginAtZero: true
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              title: { display: true, text: 'ADR (COP)' },
+              grid: { drawOnChartArea: false },
+              beginAtZero: true
+            }
+          }
+        }
+      });
+
+      // 3. Chart Estado de Cobro (Dona)
+      const ctxCobro = document.getElementById('chartCobro').getContext('2d');
+      new Chart(ctxCobro, {
+        type: 'doughnut',
+        data: {
+          labels: ['Pendiente / Sin Definir', 'Pagado', 'Parcial'],
+          datasets: [{
+            data: [7100662, 1898511, 1084616],
+            backgroundColor: ['#d32f2f', '#2e7d32', '#f57c00'],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          cutout: '70%'
+        }
+      });
+
+      // 4. Chart Cancelaciones
+      const ctxCanc = document.getElementById('chartCancelaciones').getContext('2d');
+      new Chart(ctxCanc, {
+        type: 'pie',
+        data: {
+          labels: ['Pago rechazado ($1.32M)', 'No show ($960k)', 'Auto Lobby ($409k)'],
+          datasets: [{
+            data: [1320000, 960000, 409024],
+            backgroundColor: ['#d32f2f', '#f57c00', '#1976d2'],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } }
+          }
+        }
+      });
+
+      // 5. Chart Check-in Dia (Revenue & ADR)
+      const ctxCheckin = document.getElementById('chartCheckinDia').getContext('2d');
+      new Chart(ctxCheckin, {
+        type: 'bar',
+        data: {
+          labels: ['Lun 07', 'Mar 08', 'Mié 09', 'Jue 10', 'Vie 11', 'Sáb 12', 'Dom 13'],
+          datasets: [
+            {
+              label: 'Revenue Generado (COP)',
+              data: [623560, 2103036, 943768, 909724, 2124720, 3491586, 872009],
+              backgroundColor: 'rgba(241, 90, 58, 0.75)',
+              borderRadius: 6,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: 'ADR del Día (COP)',
+              data: [89080, 72518, 62918, 60648, 163440, 109112, 72667],
+              borderColor: '#829408',
+              backgroundColor: '#829408',
+              borderWidth: 2,
+              pointRadius: 4,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: { display: true, text: 'Revenue (COP)' }
+            },
+            y1: {
+              beginAtZero: true,
+              position: 'right',
+              title: { display: true, text: 'ADR (COP)' },
+              grid: { drawOnChartArea: false }
+            }
+          }
+        }
+      });
+
+      // 6. Chart Paises
+      const ctxPaises = document.getElementById('chartPaises').getContext('2d');
+      new Chart(ctxPaises, {
+        type: 'bar',
+        data: {
+          labels: ['Francia', 'Alemania', 'UK', 'Colombia', 'Australia', 'España', 'USA', 'Otros'],
+          datasets: [{
+            label: 'Huéspedes Alojados',
+            data: [13, 13, 6, 6, 5, 4, 3, 19],
+            backgroundColor: [
+              '#F15A3A',
+              '#F15A3A',
+              '#829408',
+              '#1976d2',
+              '#f57c00',
+              '#829408',
+              '#9c27b0',
+              '#9e9e9e'
+            ],
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: { stepSize: 2 }
+            }
+          }
+        }
+      });
+
+      // 7. Chart Mix Producto
+      const ctxMix = document.getElementById('chartMixProducto').getContext('2d');
+      new Chart(ctxMix, {
+        type: 'doughnut',
+        data: {
+          labels: ['Privadas (73.5% Revenue)', 'Dormitorios (26.5% Revenue)'],
+          datasets: [{
+            data: [8140012, 2928391],
+            backgroundColor: ['#F15A3A', '#829408'],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' }
+          },
+          cutout: '65%'
+        }
+      });
+
+      // 8. Chart P&L Composición
+      const ctxPnL = document.getElementById('chartPnL').getContext('2d');
+      new Chart(ctxPnL, {
+        type: 'pie',
+        data: {
+          labels: ['Alojamiento ($12.7M)', 'Ventas & Bar ($2.8M)', 'Otros Ingresos ($610k)'],
+          datasets: [{
+            data: [12728439, 2812000, 610854],
+            backgroundColor: ['#F15A3A', '#829408', '#1976d2'],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { boxWidth: 12 } }
+          }
+        }
+      });
+
+    });
+  </script>
+</body>
+</html>
